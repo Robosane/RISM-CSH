@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>RISM-CSH</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>bulb.gif</name>
+			<type>1</type>
+			<location>/home/robo/eclipse/workspace/RISM-CSH/bulb.gif</location>
+		</link>
+		<link>
+			<name>src/misc/bulb.gif</name>
+			<type>1</type>
+			<location>/home/robo/eclipse/workspace/RISM-CSH/src/misc/bulb.gif</location>
+		</link>
+	</linkedResources>
+</projectDescription>
