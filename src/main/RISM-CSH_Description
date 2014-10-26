@@ -1,0 +1,46 @@
+
+██████╗ ██╗███████╗███╗   ███╗       ██████╗███████╗██╗  ██╗
+██╔══██╗██║██╔════╝████╗ ████║      ██╔════╝██╔════╝██║  ██║
+██████╔╝██║███████╗██╔████╔██║█████╗██║     ███████╗███████║
+██╔══██╗██║╚════██║██║╚██╔╝██║╚════╝██║     ╚════██║██╔══██║
+██║  ██║██║███████║██║ ╚═╝ ██║      ╚██████╗███████║██║  ██║
+╚═╝  ╚═╝╚═╝╚══════╝╚═╝     ╚═╝       ╚═════╝╚══════╝╚═╝  ╚═╝
+
+	Robosane Interactive Systems Management - Client Systems Helper
+	"A helpful humorous inhuman assistant to your computer."
+
+The RISM-CSH (Client Systems Helper) is provided for the members, users, and customers of Robosane
+in the hopes that they will find this software useful in some aspect.
+
+While it maintains similarities to the original RISM System, it's functions are changed to help
+the users instead of the administrators or Robosane Personnel.
+
+RISM-CSH aims to provide the following:
+	- An embedded implementation of the Robosane Website:
+		- User Account Handling
+		- Automatic Sign-in and secure storage of credentials.
+		- Cookie storage for "Remember Me" browser functionality.
+		- [Reach] Notification system for UDDEIM Messages.
+	- Act as a background process to automatically check for Notifications.
+	- A mild sense of humor.
+	- Utilities for launching and managing games:
+		- Support for 
+	- Quick Start and Connect to (or embedded) Robosane TeamSpeak3 Server.
+	- Quick Start and Connect to (Steam API) Robosane Steam-Based Game servers.
+
+In the future this software hopes to provide:
+	- Backup and Restore universal utilities.
+	- Systems optimization utilities.
+
+
+This application will make use of the following coding tactics:
+	- Running as a background process with system-tray icon.
+	- Use of Regex expressions to reduce human input error.
+	- Standard Robosane Commenting and Formatting Conventions
+
+Specific Project Reqs:
+	- Use of booleans: for all states of application, from 'site-active' to 'application-dormant'
+	- Control statements: Everywhere, difficult not to include. Entire program wrapped in state-based loop.
+	- Input: Mainly GUI, input for messaging, credentials, posting, etc.
+	- Error checking: All inputs will be case-based and always include a last resort non-match case.
+	- Documentation: This code will be commented and documented using Robosane's coding standards.
