@@ -4,7 +4,9 @@
 package main;
 
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -28,7 +30,7 @@ public class Functions {
 	        try {
 				openWebpage(new URL(url).toURI());
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
+				System.err.println("Malformed URL Exception. How silly.");
 				e.printStackTrace();
 			}
 	    } catch (URISyntaxException e) {
@@ -43,9 +45,20 @@ public class Functions {
 	        try {
 	            desktop.browse(uri);
 	        } catch (Exception e) {
+	        	System.err.println("Some kind of exception occured, sorry I don't know more.");
 	            e.printStackTrace();
 	        }
 	    }
+	}
+	
+	// Thanks to 'Stephen C' from Stackoverflow
+	public static boolean hostAvailabilityCheck(String SERVER_ADDRESS, int TCP_SERVER_PORT) { 
+	    try (Socket s = new Socket(SERVER_ADDRESS, TCP_SERVER_PORT)) {
+	        return true;
+	    } catch (IOException ex) {
+	        /* ignore */
+	    }
+	    return false;
 	}
 
 }

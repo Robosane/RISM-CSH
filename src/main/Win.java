@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -21,14 +22,31 @@ import javax.swing.JButton;
 
 import main.Functions;
 
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import java.awt.Window.Type;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.GridLayout;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.FlowLayout;
+import javax.swing.JTextPane;
+
 public class Win {
 
 	private JFrame frmRismcsh;
+	private JTextField txtPortNumber;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,11 +71,9 @@ public class Win {
 	 */
 	private void initialize() {
 		frmRismcsh = new JFrame();
+		frmRismcsh.setType(Type.UTILITY);
 		frmRismcsh.getContentPane().setForeground(new Color(102, 0, 0));
-		
-		JLabel lblLatestArticle = new JLabel("Latest Article:");
-		lblLatestArticle.setToolTipText("This is a marquee displaying the latest article from Robosane.");
-		frmRismcsh.getContentPane().add(lblLatestArticle, BorderLayout.SOUTH);
+		frmRismcsh.setMinimumSize(new Dimension(400, 300));
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setForeground(new Color(102, 0, 0));
@@ -71,6 +87,77 @@ public class Win {
 		btnWebsite.setBackground(Color.LIGHT_GRAY);
 		btnWebsite.setToolTipText("Open robosane.tk in your default browser.");
 		splitPane.setRightComponent(btnWebsite);
+		
+		JSplitPane splitPaneFeed = new JSplitPane();
+		splitPaneFeed.setContinuousLayout(true);
+		frmRismcsh.getContentPane().add(splitPaneFeed, BorderLayout.SOUTH);
+		
+		JLabel label = new JLabel("Latest Article:");
+		label.setToolTipText("This is a marquee displaying the latest article from Robosane.");
+		splitPaneFeed.setLeftComponent(label);
+		
+		JLabel lblArticleMarquee = new JLabel("Article Marquee");
+		splitPaneFeed.setRightComponent(lblArticleMarquee);
+		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		
+		JTextPane aboutPane = new JTextPane();
+		aboutPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com about me.\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
+		tabbedPane.addTab("About", null, aboutPane, null);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Server Status Checker", null, panel, null);
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		JSplitPane ServerStatusVerticalPane = new JSplitPane();
+		ServerStatusVerticalPane.setContinuousLayout(true);
+		ServerStatusVerticalPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		panel.add(ServerStatusVerticalPane);
+		
+		JSplitPane PortChecking = new JSplitPane();
+		PortChecking.setResizeWeight(0.5);
+		PortChecking.setContinuousLayout(true);
+		ServerStatusVerticalPane.setLeftComponent(PortChecking);
+		
+		JSplitPane splitPane_3 = new JSplitPane();
+		PortChecking.setLeftComponent(splitPane_3);
+		
+		JLabel lblServerPort = new JLabel("Server Port:");
+		splitPane_3.setLeftComponent(lblServerPort);
+		
+		txtPortNumber = new JTextField();
+		txtPortNumber.setText("Port Number");
+		splitPane_3.setRightComponent(txtPortNumber);
+		txtPortNumber.setColumns(10);
+		
+		JSplitPane splitPane_4 = new JSplitPane();
+		PortChecking.setRightComponent(splitPane_4);
+		
+		JLabel lblStatusResponse = new JLabel("Unknown");
+		splitPane_4.setLeftComponent(lblStatusResponse);
+		
+		JButton btnStatusCheck = new JButton("Check");
+		splitPane_4.setRightComponent(btnStatusCheck);
+		
+		JPanel PortsList = new JPanel();
+		ServerStatusVerticalPane.setRightComponent(PortsList);
+		PortsList.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JButton btnWebsite_1 = new JButton("Website");
+		PortsList.add(btnWebsite_1);
+		
+		JButton btnWebsite_2 = new JButton("Website ( HTTPS )");
+		PortsList.add(btnWebsite_2);
+		
+		JButton btnMinecraft = new JButton("Minecraft");
+		PortsList.add(btnMinecraft);
+		
+		JButton btnTerraria = new JButton("Terraria");
+		PortsList.add(btnTerraria);
+		
+		JButton btnGarrysModOr = new JButton("Garry's Mod or Team Fortress 2");
+		PortsList.add(btnGarrysModOr);
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/misc/bulb.gif")));
@@ -97,8 +184,16 @@ public class Win {
 		
 		btnWebsite.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
-				// TODO Open Website in browser, then switch to that window
+				System.out.println("Opening http://robosane.tk...");
 				Functions.openWebpage("http://robosane.tk");
+			}
+		});
+		
+		btnStatusCheck.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Checking Server Availability...");
+				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
+				// tell that value to lblStatusResponse
 			}
 		});
 		
