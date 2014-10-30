@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JSplitPane;
 import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import main.Functions;
 
@@ -35,8 +37,12 @@ import java.awt.GridLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Win {
 
@@ -70,10 +76,21 @@ public class Win {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		int portNumber;
+		
 		frmRismcsh = new JFrame();
 		frmRismcsh.setType(Type.UTILITY);
 		frmRismcsh.getContentPane().setForeground(new Color(102, 0, 0));
 		frmRismcsh.setMinimumSize(new Dimension(400, 300));
+		
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException
+				| IllegalAccessException | UnsupportedLookAndFeelException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setForeground(new Color(102, 0, 0));
@@ -101,19 +118,29 @@ public class Win {
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+
+		JTextPane aboutTextPane = new JTextPane();
+		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com about me.\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
 		
-		JTextPane aboutPane = new JTextPane();
-		aboutPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com about me.\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
-		tabbedPane.addTab("About", null, aboutPane, null);
+		JScrollPane aboutScrollPane = new JScrollPane(aboutTextPane);
+		aboutScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		aboutScrollPane.setViewportBorder(null);
+		tabbedPane.addTab("About", null, aboutScrollPane, null);
+		tabbedPane.setEnabledAt(0, true);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Server Status Checker", null, panel, null);
-		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel serverStatusPanel = new JPanel();
+		
+		JScrollPane serverStatusScroller = new JScrollPane(serverStatusPanel);
+		
+		tabbedPane.addTab("Server Status Checker", null, serverStatusScroller, null);
+		serverStatusPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		
 		
 		JSplitPane ServerStatusVerticalPane = new JSplitPane();
 		ServerStatusVerticalPane.setContinuousLayout(true);
 		ServerStatusVerticalPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
-		panel.add(ServerStatusVerticalPane);
+		serverStatusPanel.add(ServerStatusVerticalPane);
 		
 		JSplitPane PortChecking = new JSplitPane();
 		PortChecking.setResizeWeight(0.5);
@@ -134,7 +161,7 @@ public class Win {
 		JSplitPane splitPane_4 = new JSplitPane();
 		PortChecking.setRightComponent(splitPane_4);
 		
-		JLabel lblStatusResponse = new JLabel("Unknown");
+		final JLabel lblStatusResponse = new JLabel("Server Status");
 		splitPane_4.setLeftComponent(lblStatusResponse);
 		
 		JButton btnStatusCheck = new JButton("Check");
@@ -194,6 +221,22 @@ public class Win {
 				System.out.println("Checking Server Availability...");
 				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
 				// tell that value to lblStatusResponse
+				lblStatusResponse.setText("Checking");
+				try {
+					int portNumber = Integer.parseInt(txtPortNumber.getText());
+					System.out.println("Port Number OK");
+					if (Functions.hostAvailabilityCheck("robosane.tk", portNumber)) {
+						lblStatusResponse.setText("Online");
+						System.out.println("Server Online.");
+					} else {
+						lblStatusResponse.setText("Unavailable");
+						System.out.println("Server did not respond on TCP " + portNumber);
+					}
+				} catch (Exception portParseException) {
+					System.err.println("Port Check Failure.");
+					lblStatusResponse.setText("Error");
+					//portParseException.printStackTrace();
+				}
 			}
 		});
 		
