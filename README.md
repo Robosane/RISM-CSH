@@ -9,6 +9,6 @@ A basic Java Application for performing commonly desired tasks related to Robosa
 
 If you have a suggestion please file it under the Issues tab. Feedback is very much welcome.
 
-If you want to try out RISM, just download `RISM-CSH.jar`. ! The program does not yet have functionality.
+If you want to try out RISM, just download `RISM-CSH.jar`. ! The program has very limited functionality at the moment.
 
 Please note that the project is nowhere near complete at this time.
