@@ -44,6 +44,7 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+@SuppressWarnings("unused")
 public class Win {
 
 	private JFrame frmRismcsh;

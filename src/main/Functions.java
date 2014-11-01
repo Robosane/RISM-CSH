@@ -17,6 +17,7 @@ import java.util.concurrent.*;
  * @author robo
  *
  */
+@SuppressWarnings("unused")
 public class Functions {
 
 	/**
