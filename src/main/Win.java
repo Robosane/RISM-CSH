@@ -86,7 +86,7 @@ public class Win {
 		frmRismcsh.setMinimumSize(new Dimension(400, 300));
 		
 		try {
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e1) {
 			// TODO Auto-generated catch block
@@ -101,10 +101,18 @@ public class Win {
 		lblQuick.setToolTipText("These are some buttons to help you perform common actions faster.");
 		splitPane.setLeftComponent(lblQuick);
 		
+		JPanel panelQuick = new JPanel();
+		splitPane.setRightComponent(panelQuick);
+		
 		JButton btnWebsite = new JButton("Website");
 		btnWebsite.setBackground(Color.LIGHT_GRAY);
 		btnWebsite.setToolTipText("Open robosane.tk in your default browser.");
-		splitPane.setRightComponent(btnWebsite);
+		panelQuick.add(btnWebsite);
+		
+		JButton btnForums = new JButton("Forums");
+		btnForums.setBackground(Color.LIGHT_GRAY);
+		btnForums.setToolTipText("Open Robosane's Forums Page.");
+		panelQuick.add(btnForums);
 		
 		JSplitPane splitPaneFeed = new JSplitPane();
 		splitPaneFeed.setContinuousLayout(true);
@@ -118,6 +126,7 @@ public class Win {
 		splitPaneFeed.setRightComponent(lblArticleMarquee);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
 		JTextPane aboutTextPane = new JTextPane();
@@ -212,8 +221,15 @@ public class Win {
 		
 		btnWebsite.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) { 
-				System.out.println("Opening http://robosane.tk...");
-				Functions.openWebpage("http://robosane.tk");
+				System.out.println("Opening robosane.tk...");
+				Functions.openWebpage("robosane.tk");
+			}
+		});
+		
+		btnForums.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Opening robosane.tk/kunena/index...");
+				Functions.openWebpage("robosane.tk/kunena/index");
 			}
 		});
 		
