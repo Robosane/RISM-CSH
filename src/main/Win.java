@@ -239,7 +239,14 @@ public class Win {
 				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
 				// tell that value to lblStatusResponse
 				lblStatusResponse.setText("Checking");
+				//Wait a tiny second
+				/*try {
+					Thread.sleep(100);
+				} catch (InterruptedException ex1) {
+					Thread.currentThread().interrupt();
+				}*/
 				try {
+					lblStatusResponse.setText("Checking");
 					int portNumber = Integer.parseInt(txtPortNumber.getText());
 					System.out.println("Port Number OK");
 					if (Functions.hostAvailabilityCheck("robosane.tk", portNumber)) {

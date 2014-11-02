@@ -5,6 +5,7 @@ package main;
 
 import java.awt.Desktop;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URI;
@@ -73,10 +74,13 @@ public class Functions {
 	
 	// Thanks to 'Stephen C' from Stackoverflow
 	public static boolean hostAvailabilityCheck(String SERVER_ADDRESS, int TCP_SERVER_PORT) { 
-	    try (Socket s = new Socket(SERVER_ADDRESS, TCP_SERVER_PORT)) {
+	    try (Socket s = new Socket()) {
+	    	s.connect(new InetSocketAddress(SERVER_ADDRESS, TCP_SERVER_PORT), 1000);
+	    	s.close();
 	        return true;
 	    } catch (IOException ex) {
 	        System.out.println("Generic IOException.");
+	        ex.printStackTrace();
 	    }
 	    return false;
 	}
