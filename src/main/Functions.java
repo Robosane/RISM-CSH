@@ -80,7 +80,7 @@ public class Functions {
 	        return true;
 	    } catch (IOException ex) {
 	        System.out.println("Generic IOException.");
-	        ex.printStackTrace();
+	        //ex.printStackTrace();
 	    }
 	    return false;
 	}

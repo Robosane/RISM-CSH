@@ -193,8 +193,8 @@ public class Win {
 		JButton btnTerraria = new JButton("Terraria");
 		PortsList.add(btnTerraria);
 		
-		JButton btnGarrysModOr = new JButton("Garry's Mod or Team Fortress 2");
-		PortsList.add(btnGarrysModOr);
+		JButton btnGarrysMod = new JButton("Garry's Mod or Team Fortress 2");
+		PortsList.add(btnGarrysMod);
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/misc/bulb.gif")));
@@ -233,8 +233,44 @@ public class Win {
 			}
 		});
 		
+		// Supply Port for webserver @ 80
+		btnWebsite_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPortNumber.setText("80");
+			}
+		});
+		
+		// Supply Port for webserver @ 443
+		btnWebsite_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPortNumber.setText("443");
+			}
+		});
+		
+		// Supply Port for Minecraft @ 25565
+		btnMinecraft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPortNumber.setText("25565");
+			}
+		});
+		
+		// Supply Port for Terraria @ 7777
+		btnTerraria.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPortNumber.setText("7777");
+			}
+		});
+		
+		// Supply Port for Gmod @ 27015
+		btnGarrysMod.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPortNumber.setText("27015");
+			}
+		});
+		
 		btnStatusCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				lblStatusResponse.setText("Checking");
 				System.out.println("Checking Server Availability...");
 				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
 				// tell that value to lblStatusResponse
