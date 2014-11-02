@@ -130,7 +130,7 @@ public class Win {
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
 		JTextPane aboutTextPane = new JTextPane();
-		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com about me.\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
+		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com or create an Issue on my Github page!\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
 		
 		JScrollPane aboutScrollPane = new JScrollPane(aboutTextPane);
 		aboutScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
