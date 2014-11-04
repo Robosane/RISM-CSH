@@ -133,7 +133,6 @@ public class Win {
 		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com or create an Issue on my Github page!\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
 		
 		JScrollPane aboutScrollPane = new JScrollPane(aboutTextPane);
-		aboutScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		aboutScrollPane.setViewportBorder(null);
 		tabbedPane.addTab("About", null, aboutScrollPane, null);
 		tabbedPane.setEnabledAt(0, true);
@@ -144,8 +143,6 @@ public class Win {
 		
 		tabbedPane.addTab("Server Status Checker", null, serverStatusScroller, null);
 		serverStatusPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		
 		
 		JSplitPane ServerStatusVerticalPane = new JSplitPane();
 		ServerStatusVerticalPane.setContinuousLayout(true);
@@ -197,9 +194,9 @@ public class Win {
 		PortsList.add(btnGarrysMod);
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
-		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/misc/bulb.gif")));
+		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
 		frmRismcsh.setForeground(new Color(153, 0, 0));
-		frmRismcsh.setFont(new Font("Ubuntu Medium", Font.PLAIN, 14));
+		frmRismcsh.setFont(new Font("Ubuntu Medium", Font.PLAIN, 16));
 		frmRismcsh.setTitle("RISM-CSH");
 		frmRismcsh.setBounds(100, 100, 450, 300);
 		frmRismcsh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -270,30 +267,24 @@ public class Win {
 		
 		btnStatusCheck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblStatusResponse.setText("Checking");
+				lblStatusResponse.setText("");
 				System.out.println("Checking Server Availability...");
 				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
 				// tell that value to lblStatusResponse
-				lblStatusResponse.setText("Checking");
-				//Wait a tiny second
-				/*try {
-					Thread.sleep(100);
-				} catch (InterruptedException ex1) {
-					Thread.currentThread().interrupt();
-				}*/
+				lblStatusResponse.setText(" ... ");
+				lblStatusResponse.paintImmediately(lblStatusResponse.getVisibleRect());
 				try {
-					lblStatusResponse.setText("Checking");
 					int portNumber = Integer.parseInt(txtPortNumber.getText());
 					System.out.println("Port Number OK");
 					if (Functions.hostAvailabilityCheck("robosane.tk", portNumber)) {
-						lblStatusResponse.setText("Online");
+						lblStatusResponse.setText(" ✔ ");
 						System.out.println("Server Online.");
 					} else {
-						lblStatusResponse.setText("Unavailable");
+						lblStatusResponse.setText(" ✘ ");
 						System.out.println("Server did not respond on TCP " + portNumber);
 					}
 				} catch (Exception portParseException) {
-					System.err.println("Port Check Failure.");
+					System.err.println("Cannot parse port number \"" + txtPortNumber.getText() + "\"");
 					lblStatusResponse.setText("Error");
 					//portParseException.printStackTrace();
 				}
