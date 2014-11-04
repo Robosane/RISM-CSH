@@ -258,7 +258,7 @@ public class Win {
 			}
 		});
 		
-		// Supply Port for Gmod @ 27015
+		// Supply Port for Garry's Mod @ 27015
 		btnGarrysMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("27015");
