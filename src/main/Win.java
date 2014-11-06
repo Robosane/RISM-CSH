@@ -1,48 +1,29 @@
 package main;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Color;
-import java.awt.Toolkit;
-
-import javax.swing.JTabbedPane;
-
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JSplitPane;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-import main.Functions;
-
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import java.awt.Window.Type;
-
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
-import java.awt.GridLayout;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-
-import java.awt.FlowLayout;
-
-import javax.swing.JTextPane;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 
 @SuppressWarnings("unused")
 public class Win {
@@ -55,6 +36,7 @@ public class Win {
 	 */
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Win window = new Win();
@@ -125,7 +107,7 @@ public class Win {
 		JLabel lblArticleMarquee = new JLabel("Article Marquee");
 		splitPaneFeed.setRightComponent(lblArticleMarquee);
 		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
@@ -220,6 +202,7 @@ public class Win {
 		// ACTION LISTENERS
 		
 		btnWebsite.addActionListener(new ActionListener() { 
+			@Override
 			public void actionPerformed(ActionEvent e) { 
 				System.out.println("Opening robosane.tk...");
 				Functions.openWebpage("robosane.tk");
@@ -227,6 +210,7 @@ public class Win {
 		});
 		
 		btnForums.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Opening robosane.tk/kunena/index...");
 				Functions.openWebpage("robosane.tk/kunena/index");
@@ -235,6 +219,7 @@ public class Win {
 		
 		// Supply Port for webserver @ 80
 		btnWebsite_1.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("80");
 			}
@@ -242,6 +227,7 @@ public class Win {
 		
 		// Supply Port for webserver @ 443
 		btnWebsite_2.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("443");
 			}
@@ -249,6 +235,7 @@ public class Win {
 		
 		// Supply Port for Minecraft @ 25565
 		btnMinecraft.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("25565");
 			}
@@ -256,6 +243,7 @@ public class Win {
 		
 		// Supply Port for Terraria @ 7777
 		btnTerraria.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("7777");
 			}
@@ -263,12 +251,14 @@ public class Win {
 		
 		// Supply Port for Garry's Mod @ 27015
 		btnGarrysMod.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("27015");
 			}
 		});
 		
 		btnStatusCheck.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblStatusResponse.setText("");
 				System.out.println("Checking Server Availability...");

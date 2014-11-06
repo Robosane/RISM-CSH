@@ -6,14 +6,10 @@ package main;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.concurrent.*;
-import java.util.prefs.*;
+import java.util.prefs.Preferences;
 
 /**
  * @author robo
@@ -32,7 +28,7 @@ public class Functions {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		System.out.println("Who in the world would call the main()?");
 	}
 	
 	private static String getProtocol() {
