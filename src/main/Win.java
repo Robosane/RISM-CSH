@@ -193,6 +193,9 @@ public class Win {
 		JButton btnGarrysMod = new JButton("Garry's Mod or Team Fortress 2");
 		PortsList.add(btnGarrysMod);
 		
+		JScrollPane optionsPane = new JScrollPane();
+		tabbedPane.addTab("Options", null, optionsPane, "Set application preferences");
+		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
 		frmRismcsh.setForeground(new Color(153, 0, 0));
