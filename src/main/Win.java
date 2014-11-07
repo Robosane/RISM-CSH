@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -175,8 +176,15 @@ public class Win {
 		JButton btnGarrysMod = new JButton("Garry's Mod or Team Fortress 2");
 		PortsList.add(btnGarrysMod);
 		
-		JScrollPane optionsPane = new JScrollPane();
-		tabbedPane.addTab("Options", null, optionsPane, "Set application preferences");
+		JScrollPane optionsScrollPane = new JScrollPane();
+		tabbedPane.addTab("Options", null, optionsScrollPane, "Set application preferences");
+		
+		JPanel optionsPane = new JPanel();
+		optionsScrollPane.add(optionsPane);
+		
+		JCheckBox chkUseHTTPS = new JCheckBox("Use HTTPS?");
+		chkUseHTTPS.setVerticalAlignment(SwingConstants.TOP);
+		optionsPane.add(chkUseHTTPS);
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
