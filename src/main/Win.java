@@ -22,6 +22,7 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -178,13 +179,20 @@ public class Win {
 		
 		JScrollPane optionsScrollPane = new JScrollPane();
 		tabbedPane.addTab("Options", null, optionsScrollPane, "Set application preferences");
+		tabbedPane.setEnabledAt(2, true);
 		
 		JPanel optionsPane = new JPanel();
+		optionsPane.setBorder(null);
+		//optionsScrollPane.setViewportView(optionsPane);
 		optionsScrollPane.add(optionsPane);
 		
-		JCheckBox chkUseHTTPS = new JCheckBox("Use HTTPS?");
+		JSplitPane optionsSplitPane = new JSplitPane();
+		optionsPane.add(optionsSplitPane);
+		
+		JToggleButton chkUseHTTPS = new JToggleButton("Use HTTPS?");
 		chkUseHTTPS.setVerticalAlignment(SwingConstants.TOP);
-		optionsPane.add(chkUseHTTPS);
+		chkUseHTTPS.setHorizontalAlignment(SwingConstants.CENTER);
+		optionsSplitPane.setRightComponent(chkUseHTTPS);
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
