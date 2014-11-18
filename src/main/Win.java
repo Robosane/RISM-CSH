@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -63,6 +64,7 @@ public class Win {
 	private void initialize() {
 		
 		int portNumber;
+		String serverAddress;
 		
 		frmRismcsh = new JFrame();
 		frmRismcsh.setType(Type.UTILITY);
@@ -102,6 +104,7 @@ public class Win {
 		splitPaneFeed.setContinuousLayout(true);
 		frmRismcsh.getContentPane().add(splitPaneFeed, BorderLayout.SOUTH);
 		
+		// MARQUEE CODE
 		JLabel label = new JLabel("Latest Article:");
 		label.setToolTipText("This is a marquee displaying the latest article from Robosane.");
 		splitPaneFeed.setLeftComponent(label);
@@ -113,6 +116,7 @@ public class Win {
 		tabbedPane.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
+		// ABOUT TAB
 		JTextPane aboutTextPane = new JTextPane();
 		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com or create an Issue on my Github page!\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
 		
@@ -121,6 +125,7 @@ public class Win {
 		tabbedPane.addTab("About", null, aboutScrollPane, null);
 		tabbedPane.setEnabledAt(0, true);
 		
+		// SERVER STATUS CHECKER
 		JPanel serverStatusPanel = new JPanel();
 		
 		JScrollPane serverStatusScroller = new JScrollPane(serverStatusPanel);
@@ -141,11 +146,12 @@ public class Win {
 		JSplitPane splitPane_3 = new JSplitPane();
 		PortChecking.setLeftComponent(splitPane_3);
 		
-		JLabel lblServerPort = new JLabel("Server Port:");
-		splitPane_3.setLeftComponent(lblServerPort);
+		final JTextField txtServerAddress = new JTextField();
+		txtServerAddress.setText("robosane.tk");
+		splitPane_3.setLeftComponent(txtServerAddress);
 		
 		txtPortNumber = new JTextField();
-		txtPortNumber.setText("Port Number");
+		txtPortNumber.setText("Port");
 		splitPane_3.setRightComponent(txtPortNumber);
 		txtPortNumber.setColumns(10);
 		
@@ -158,6 +164,7 @@ public class Win {
 		JButton btnStatusCheck = new JButton("Check");
 		splitPane_4.setRightComponent(btnStatusCheck);
 		
+		// AUTOFILL PORT NUMBERS
 		JPanel PortsList = new JPanel();
 		ServerStatusVerticalPane.setRightComponent(PortsList);
 		PortsList.setLayout(new GridLayout(0, 1, 0, 0));
@@ -199,7 +206,7 @@ public class Win {
 		frmRismcsh.setForeground(new Color(153, 0, 0));
 		frmRismcsh.setFont(new Font("Ubuntu Medium", Font.PLAIN, 16));
 		frmRismcsh.setTitle("RISM-CSH");
-		frmRismcsh.setBounds(100, 100, 450, 300);
+		frmRismcsh.setBounds(100, 100, 500, 350);
 		frmRismcsh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		
 //		String s = "Tomorrow, and tomorrow, and tomorrow, "
@@ -284,8 +291,9 @@ public class Win {
 				lblStatusResponse.paintImmediately(lblStatusResponse.getVisibleRect());
 				try {
 					int portNumber = Integer.parseInt(txtPortNumber.getText());
+					String serverAddress = txtServerAddress.getText();
 					System.out.println("Port Number OK");
-					if (Functions.hostAvailabilityCheck("robosane.tk", portNumber)) {
+					if (Functions.hostAvailabilityCheck(serverAddress, portNumber)) {
 						lblStatusResponse.setText(" ✔ ");
 						System.out.println("Server Online.");
 					} else {
@@ -300,5 +308,32 @@ public class Win {
 			}
 		});
 		
+		
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//                      UX CODE ONLY BELOW!
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		// Thanks to StackOverflow "eugener"
+		txtServerAddress.addFocusListener(new java.awt.event.FocusAdapter() {
+		    public void focusGained(java.awt.event.FocusEvent evt) {
+		        SwingUtilities.invokeLater(new Runnable() {
+		            @Override
+		            public void run() {
+		                txtServerAddress.selectAll();
+		            }
+		        });
+		    }
+		});
+		
+		txtPortNumber.addFocusListener(new java.awt.event.FocusAdapter() {
+		    public void focusGained(java.awt.event.FocusEvent evt) {
+		        SwingUtilities.invokeLater(new Runnable() {
+		            @Override
+		            public void run() {
+		                txtPortNumber.selectAll();
+		            }
+		        });
+		    }
+		});
 	}
 }
