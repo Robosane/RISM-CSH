@@ -41,8 +41,12 @@ public class Functions {
 		}
 	}
 	
-	private static void setHTTPS(boolean HTTPS) {
+	public static void setHTTPS(boolean HTTPS) {
 		prefs.putBoolean(USE_HTTPS, HTTPS);
+	}
+	
+	public static boolean getHTTPS() {
+		return prefs.getBoolean(USE_HTTPS, false);
 	}
 	
 	public static void openWebpage(String url) {

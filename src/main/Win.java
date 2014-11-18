@@ -100,17 +100,21 @@ public class Win {
 		btnForums.setToolTipText("Open Robosane's Forums Page.");
 		panelQuick.add(btnForums);
 		
+		/*
 		JSplitPane splitPaneFeed = new JSplitPane();
 		splitPaneFeed.setContinuousLayout(true);
 		frmRismcsh.getContentPane().add(splitPaneFeed, BorderLayout.SOUTH);
 		
 		// MARQUEE CODE
+		// Baaha I can't get this working...
+		
 		JLabel label = new JLabel("Latest Article:");
 		label.setToolTipText("This is a marquee displaying the latest article from Robosane.");
 		splitPaneFeed.setLeftComponent(label);
 		
 		JLabel lblArticleMarquee = new JLabel("Article Marquee");
 		splitPaneFeed.setRightComponent(lblArticleMarquee);
+		*/
 		
 		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.LIGHT_GRAY);
@@ -184,22 +188,18 @@ public class Win {
 		JButton btnGarrysMod = new JButton("Garry's Mod or Team Fortress 2");
 		PortsList.add(btnGarrysMod);
 		
-		JScrollPane optionsScrollPane = new JScrollPane();
-		tabbedPane.addTab("Options", null, optionsScrollPane, "Set application preferences");
-		tabbedPane.setEnabledAt(2, true);
-		
+		// OPTIONS TAB
 		JPanel optionsPane = new JPanel();
 		optionsPane.setBorder(null);
-		//optionsScrollPane.setViewportView(optionsPane);
-		optionsScrollPane.add(optionsPane);
+		tabbedPane.addTab("Options", null, optionsPane, "Set application preferences");
 		
-		JSplitPane optionsSplitPane = new JSplitPane();
-		optionsPane.add(optionsSplitPane);
+		//JSplitPane optionsSplitPane = new JSplitPane();
+		//optionsPane.add(optionsSplitPane);
 		
-		JToggleButton chkUseHTTPS = new JToggleButton("Use HTTPS?");
-		chkUseHTTPS.setVerticalAlignment(SwingConstants.TOP);
+		final JCheckBox chkUseHTTPS = new JCheckBox("Use HTTPS?");
 		chkUseHTTPS.setHorizontalAlignment(SwingConstants.CENTER);
-		optionsSplitPane.setRightComponent(chkUseHTTPS);
+		optionsPane.add(chkUseHTTPS);
+		chkUseHTTPS.setSelected(Functions.getHTTPS());
 		
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
@@ -277,6 +277,12 @@ public class Win {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtPortNumber.setText("27015");
+			}
+		});
+		
+		chkUseHTTPS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Functions.setHTTPS(chkUseHTTPS.isSelected());
 			}
 		});
 		
