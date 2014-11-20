@@ -34,12 +34,9 @@ public class Win {
 	private JFrame frmRismcsh;
 	private JTextField txtPortNumber;
 
-	/**
-	 * Launch the application.
-	 */
+	//Launch the application.
 	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
-			@Override
 			public void run() {
 				try {
 					Win window = new Win();
@@ -51,9 +48,7 @@ public class Win {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	// 3... 2... 1... GO!
 	public Win() {
 		initialize();
 	}
@@ -79,6 +74,7 @@ public class Win {
 			e1.printStackTrace();
 		}
 		
+		// Set up our Quick Access Bar at the top.
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setForeground(new Color(102, 0, 0));
 		frmRismcsh.getContentPane().add(splitPane, BorderLayout.NORTH);
@@ -119,10 +115,10 @@ public class Win {
 		JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 		tabbedPane.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.getContentPane().add(tabbedPane, BorderLayout.CENTER);
-
+		
 		// ABOUT TAB
 		JTextPane aboutTextPane = new JTextPane();
-		aboutTextPane.setText("Hi! I'm RISM! I'm here to help you do stuff.\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com or create an Issue on my Github page!\n\nHere's some information about my abilities:\n\nSERVER STATUS CHECKER:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!");
+		aboutTextPane.setText("Hi! I'm RISM! I'm a program developed by Robosane to help people do common things quickly. I stand for \"Robosane Interactive Systems Manager.\"\n\nAny bugs, problems, or suggestions, please email robobenklein@gmail.com or create an Issue on my Github page!\n\nAbout me:\n\nQuick Access:\nThese are buttons to help you get to the Robosane Website quickly. Just press a button and you'll be there before you can say \"Hippopotomonstrosesquippedaliophobia\"\n\nServer Status Checker:\nEnter in the port of the service you want to check on Robosane, then just hit 'Check.' If you don't know the port of the service you want, just hit the corresponding button and the field will be filled for you!\n\nOptions:\nThis tab lets you configure how you want the program to behave. The only option right now is to enable/disable the use of HTTPS when opening the Robosane website using the Quick Access buttons.\n\nThe Robosane Technology Philosophy:\n Robosane aims to provide software that not only \"just works,\" but is enjoyable for both users and developers. Our programs should never put users, computers, or anything else at risk, and never use coding tactics that make our code unnecessarily hard to understand. Code can be published under any license, however Robosane encourages developers to Open Source their works.");
 		
 		JScrollPane aboutScrollPane = new JScrollPane(aboutTextPane);
 		aboutScrollPane.setViewportBorder(null);
@@ -131,9 +127,7 @@ public class Win {
 		
 		// SERVER STATUS CHECKER
 		JPanel serverStatusPanel = new JPanel();
-		
 		JScrollPane serverStatusScroller = new JScrollPane(serverStatusPanel);
-		
 		tabbedPane.addTab("Server Status Checker", null, serverStatusScroller, null);
 		serverStatusPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
@@ -193,14 +187,13 @@ public class Win {
 		optionsPane.setBorder(null);
 		tabbedPane.addTab("Options", null, optionsPane, "Set application preferences");
 		
-		//JSplitPane optionsSplitPane = new JSplitPane();
-		//optionsPane.add(optionsSplitPane);
-		
+		// UseHTTPS Checkbox
 		final JCheckBox chkUseHTTPS = new JCheckBox("Use HTTPS?");
 		chkUseHTTPS.setHorizontalAlignment(SwingConstants.CENTER);
 		optionsPane.add(chkUseHTTPS);
 		chkUseHTTPS.setSelected(Functions.getHTTPS());
 		
+		// Finish setting up our window & display it.
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
 		frmRismcsh.setForeground(new Color(153, 0, 0));
@@ -208,22 +201,12 @@ public class Win {
 		frmRismcsh.setTitle("RISM-CSH");
 		frmRismcsh.setBounds(100, 100, 500, 350);
 		frmRismcsh.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		
-//		String s = "Tomorrow, and tomorrow, and tomorrow, "
-//		        + "creeps in this petty pace from day to day, "
-//		        + "to the last syllable of recorded time; ... "
-//		        + "It is a tale told by an idiot, full of "
-//		        + "sound and fury signifying nothing.";
-//		Marquee mp = new Marquee(s, 32);
-//        frmRismcsh.add(mp);
-//        frmRismcsh.pack();
-//        frmRismcsh.setLocationRelativeTo(null);
-//        frmRismcsh.setVisible(true);
-//        mp.start();
 		
 		// ################################################################
 		// ACTION LISTENERS
+		// ################################################################
 		
+		// Whenever clicked, open the webpage.
 		btnWebsite.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) { 
@@ -232,6 +215,7 @@ public class Win {
 			}
 		});
 		
+		// When the forums button is clicked, open the page.
 		btnForums.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -280,6 +264,7 @@ public class Win {
 			}
 		});
 		
+		// Whenever the checkbox is clicked, take it's value and set the preference.
 		chkUseHTTPS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Functions.setHTTPS(chkUseHTTPS.isSelected());

@@ -15,7 +15,6 @@ import java.util.prefs.Preferences;
  * @author robo
  *
  */
-@SuppressWarnings("unused")
 public class Functions {
 	
 	// Use the Robosane class to store user data.
