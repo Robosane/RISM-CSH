@@ -53,9 +53,7 @@ public class Win {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	// Big function to establish the application in Swing
 	private void initialize() {
 		
 		int portNumber;
@@ -193,6 +191,11 @@ public class Win {
 		optionsPane.add(chkUseHTTPS);
 		chkUseHTTPS.setSelected(Functions.getHTTPS());
 		
+		// Button to download certificate
+		JButton getCert = new JButton("Get HTTPS Certificate");
+		optionsPane.add(getCert);
+		getCert.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		// Finish setting up our window & display it.
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
 		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
@@ -271,19 +274,25 @@ public class Win {
 			}
 		});
 		
+		getCert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Functions.openWebpage("robosane.tk/13-system/118-install-robosane-ssl-certificate");
+			}
+		});
+		
 		btnStatusCheck.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblStatusResponse.setText("");
 				System.out.println("Checking Server Availability...");
-				// TODO Server Check take port number then hostAvailabilityCheck(robosane.tk, port)
-				// tell that value to lblStatusResponse
 				lblStatusResponse.setText(" ... ");
+				// Draw the label before the server-check function hangs.
 				lblStatusResponse.paintImmediately(lblStatusResponse.getVisibleRect());
 				try {
 					int portNumber = Integer.parseInt(txtPortNumber.getText());
 					String serverAddress = txtServerAddress.getText();
 					System.out.println("Port Number OK");
+					// Woot I like ASCII Characters
 					if (Functions.hostAvailabilityCheck(serverAddress, portNumber)) {
 						lblStatusResponse.setText(" ✔ ");
 						System.out.println("Server Online.");
