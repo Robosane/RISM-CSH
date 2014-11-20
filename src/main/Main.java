@@ -1,20 +1,8 @@
-/**
- * 
- */
 package main;
-
-
-/**
- * @author robo
- *
- */
 public class Main {
-
-	/**
-	 * @param args
-	 */
+	// "That was easy"
 	public static void main(String[] args) throws Exception {
+		// Start the application.
 		Win.main();
 	}
-
 }

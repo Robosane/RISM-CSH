@@ -22,13 +22,11 @@ import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-@SuppressWarnings("unused")
 public class Win {
 
 	private JFrame frmRismcsh;
@@ -55,10 +53,7 @@ public class Win {
 
 	// Big function to establish the application in Swing
 	private void initialize() {
-		
-		int portNumber;
-		String serverAddress;
-		
+		// Create the window.
 		frmRismcsh = new JFrame();
 		frmRismcsh.setType(Type.UTILITY);
 		frmRismcsh.getContentPane().setForeground(new Color(102, 0, 0));
@@ -68,8 +63,8 @@ public class Win {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			System.err.println("This System does not have a System Look and Feel Class.");
 		}
 		
 		// Set up our Quick Access Bar at the top.
