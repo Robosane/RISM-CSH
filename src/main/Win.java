@@ -193,7 +193,7 @@ public class Win {
 		
 		// Finish setting up our window & display it.
 		frmRismcsh.setBackground(Color.LIGHT_GRAY);
-		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("/bulb.gif")));
+		frmRismcsh.setIconImage(Toolkit.getDefaultToolkit().getImage(Win.class.getResource("bulb.gif")));
 		frmRismcsh.setForeground(new Color(153, 0, 0));
 		frmRismcsh.setFont(new Font("Ubuntu Medium", Font.PLAIN, 16));
 		frmRismcsh.setTitle("RISM-CSH");
